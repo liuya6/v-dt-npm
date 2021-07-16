@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app" @click="appClick">
+    <div>
+      <button @click="show = !show">show</button>
+    </div>
+    <!--    <div-->
+    <!--      class="app"-->
+    <!--      v-if="show"-->
+    <!--      v-debounce.stop="{ fn: test, params: [1, 2], even: 'scroll' }"-->
+    <!--    >-->
+    <!--      <ul>-->
+    <!--        <li v-for="item in 1000" :key="item">{{ item }}</li>-->
+    <!--      </ul>-->
+    <!--    </div>-->
+    <button
+      v-show="show"
+      v-debounce.stop="{ fn: test, params: [1], use: 'before' }"
+    >
+      测试按钮
+    </button>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      message: "message",
+      show: true,
+    };
+  },
+  methods: {
+    appClick() {
+      console.log("appclick");
+    },
+    test(a) {
+      console.log(a, this.message);
+    },
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.app {
+  height: 100px;
+  overflow: auto;
 }
 </style>
