@@ -1,24 +1,29 @@
-# v-dt
+# 简介
+vue自定义指令实现防抖节流功能
 
-## Project setup
+### 使用文档
 ```
-yarn install
-```
+npm i v-dt-npm
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+yarn add v-dt-npm
 ```
 
-### Compiles and minifies for production
-```
-yarn build
+```js
+import vdt from 'v-dt-npm';
+
+Vue.use(vdt,{
+  delay: 200 // 不配置默认为300毫秒延迟
+});
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### 使用方法
+>防抖使用v-debounce 节流使用v-throttle
+```html
+ <button v-debounce="test">默认</button>
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ <button v-debounce.stop="test">阻止冒泡</button>
+
+ <button v-debounce.stop="{fn:test,params:1}">添加参数，多个使用数组包裹[1,2]</button>
+
+ <button v-debounce.stop="{fn:test,params:[1,2],use:'before'}">use设置防抖延迟前执行，默认为延迟后</button>
+``` 
